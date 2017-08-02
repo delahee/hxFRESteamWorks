@@ -7,5 +7,5 @@ extern class DownloadUGCResult {
 	var appID:UInt;
 	var size:Int;
 	var fileName:String;
-	var owner:String
+	var owner:String;
 }
