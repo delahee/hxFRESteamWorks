@@ -1,6 +1,5 @@
 package com.amanitadesign.steam;
 
-
 extern class FileDetailsResult {
 	var result				: Int;
 	var file				: String;
