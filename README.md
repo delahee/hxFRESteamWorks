@@ -1,2 +1,2 @@
 # hxFRESteamWorks
-Haxe/Flash+AIR bindings for FRESteamWorks
+Haxe/Flash+AIR bindings for https://github.com/Ventero/FRESteamWorks
