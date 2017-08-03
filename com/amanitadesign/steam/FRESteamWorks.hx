@@ -2,12 +2,15 @@ package com.amanitadesign.steam;
 
 extern class FRESteamWorks extends flash.events.EventDispatcher {
 	
+	//for overlay to be injected correctly, sue : 
+	// static var steamApi = new FRESteamWorks(); //static var injection allow to hook the window before first render
 	function new(target:flash.events.IEventDispatcher = null) : Void;
 
 	function init()			: Bool;
 	function runCallbacks()	: Bool;
 	function getUserID()	: String;
 	function getAppID()		: UInt;
+	function dispose()		: Void;//not realling mapping Shutdown ?
 	
 	function getAvailableGameLanguages()		: String;
 	function getCurrentGameLanguage()			: String;
@@ -81,29 +84,29 @@ extern class FRESteamWorks extends flash.events.EventDispatcher {
 	function enumeratePublishedWorkshopFiles(type:UInt, start:UInt, count:UInt, days:UInt, tags:Array<Dynamic>, userTags:Array<Dynamic>)
 																						: Bool;
 	function enumerateUserSubscribedFiles(startIndex:UInt)								: Bool;
-	 function enumerateUserSubscribedFilesResult()										: SubscribedFilesResult;
-	 function enumerateUserSharedWorkshopFiles(steamID:String, start:UInt, required:Array<Dynamic>, excluded:Array<Dynamic>)
+	function enumerateUserSubscribedFilesResult()										: SubscribedFilesResult;
+	function enumerateUserSharedWorkshopFiles(steamID:String, start:UInt, required:Array<Dynamic>, excluded:Array<Dynamic>)
 																						: Bool;
-	 function enumerateUserSharedWorkshopFilesResult()									: UserFilesResult;
-	 function enumeratePublishedFilesByUserAction(action:UInt, startIndex:UInt)			: Bool;
-	  function enumeratePublishedFilesByUserActionResult()								: FilesByUserActionResult;
-	 function subscribePublishedFile(file:String)										: Bool;
-	  function unsubscribePublishedFile(file:String)									: Bool;
-	 function createPublishedFileUpdateRequest(file:String)								: String;
-	 function updatePublishedFileFile(handle:String, file:String)						: Bool;
-	 function updatePublishedFilePreviewFile(handle:String, preview:String)				: Bool;
-	  function updatePublishedFileTitle(handle:String, title:String)					: Bool;
-	 function updatePublishedFileDescription(handle:String, description:String)			: Bool;
-	 function updatePublishedFileSetChangeDescription(handle:String, changeDesc:String)	: Bool;
-	 function updatePublishedFileVisibility(handle:String, visibility:UInt)				: Bool;
-	 function updatePublishedFileTags(handle:String, tags:Array<Dynamic>)				: Bool;
-	 function commitPublishedFileUpdate(handle:String)									: Bool;
-	 function getPublishedItemVoteDetails(file:String)									: Bool;
-	 function getPublishedItemVoteDetailsResult()										: ItemVoteDetailsResult;
-	 function getUserPublishedItemVoteDetails(file:String)								: Bool;
-	 function getUserPublishedItemVoteDetailsResult()									: UserVoteDetails;
-	 function updateUserPublishedItemVote(file:String, upvote:Bool)						: Bool;
-	 function setUserPublishedFileAction(file:String, action:UInt) 						: Bool;
+	function enumerateUserSharedWorkshopFilesResult()									: UserFilesResult;
+	function enumeratePublishedFilesByUserAction(action:UInt, startIndex:UInt)			: Bool;
+	function enumeratePublishedFilesByUserActionResult()								: FilesByUserActionResult;
+	function subscribePublishedFile(file:String)										: Bool;
+	function unsubscribePublishedFile(file:String)										: Bool;
+	function createPublishedFileUpdateRequest(file:String)								: String;
+	function updatePublishedFileFile(handle:String, file:String)						: Bool;
+	function updatePublishedFilePreviewFile(handle:String, preview:String)				: Bool;
+	function updatePublishedFileTitle(handle:String, title:String)						: Bool;
+	function updatePublishedFileDescription(handle:String, description:String)			: Bool;
+	function updatePublishedFileSetChangeDescription(handle:String, changeDesc:String)	: Bool;
+	function updatePublishedFileVisibility(handle:String, visibility:UInt)				: Bool;
+	function updatePublishedFileTags(handle:String, tags:Array<Dynamic>)				: Bool;
+	function commitPublishedFileUpdate(handle:String)									: Bool;
+	function getPublishedItemVoteDetails(file:String)									: Bool;
+	function getPublishedItemVoteDetailsResult()										: ItemVoteDetailsResult;
+	function getUserPublishedItemVoteDetails(file:String)								: Bool;
+	function getUserPublishedItemVoteDetailsResult()									: UserVoteDetails;
+	function updateUserPublishedItemVote(file:String, upvote:Bool)						: Bool;
+	function setUserPublishedFileAction(file:String, action:UInt) 						: Bool;
 	 
 	/***********/
 	/* Friends */
