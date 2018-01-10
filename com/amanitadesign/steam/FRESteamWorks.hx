@@ -1,5 +1,40 @@
 package com.amanitadesign.steam;
 
+typedef AuthHandle = UInt;
+
+@:enum 
+abstract EUserHasLicenseResult(UInt) {
+	var HasLicense = 0;
+	var DoesNotHaveLicense = 1;
+	var NoAuth = 2;
+}
+
+@:enum 
+abstract EBeginAuthSessionResult(UInt) {
+	var OK				= 0;//	Ticket is valid for this game and this Steam ID.
+	var InvalidTicket	= 1;//	The ticket is invalid.
+	var DuplicateRequest= 2;//	A ticket has already been submitted for this Steam ID.
+	var InvalidVersion	= 3;//	Ticket is from an incompatible interface version.
+	var GameMismatch	= 4;//	Ticket is not for this game.
+	var ExpiredTicket	= 5;//	Ticket has expired.
+}
+
+@:enum 
+abstract EFriendFlag(UInt) {
+	var None					= 0x00	;// None.
+	var Blocked					= 0x01	;//Users that the current user has blocked from contacting.
+	var FriendshipRequested		= 0x02	;//Users that have sent a friend invite to the current user.
+	var Immediate				= 0x04	;//The current user's "regular" friends.
+	var ClanMember				= 0x08	;//Users that are in one of the same (small) Steam groups as the current user.
+	var OnGameServer			= 0x10	;//Users that are on the same game server; as set by SetPlayedWith.
+	var RequestingFriendship	= 0x80	;//Users that the current user has sent friend invites to.
+	var RequestingInfo			= 0x100	;//Users that are currently sending additional info about themselves after a call to RequestUserInformation
+	var Ignored					= 0x200	;//Users that the current user has ignored from contacting them.
+	var IgnoredFriend			= 0x400	;//Users that have ignored the current user; but the current user still knows about them.
+	var ChatMember				= 0x1000	;//Users in one of the same chats.
+	var All						= 0xFFFF	;//Returns all friend flags.
+}
+
 extern class FRESteamWorks extends flash.events.EventDispatcher {
 	
 	//for overlay to be injected correctly, sue : 
@@ -111,19 +146,19 @@ extern class FRESteamWorks extends flash.events.EventDispatcher {
 	/***********/
 	/* Friends */
 	/***********/
-	function getFriendCount(flags:UInt)										: Int;
-	function getFriendByIndex(index:Int, flags:UInt)						: String;
+	function getFriendCount(flags:EFriendFlag)								: Int;
+	function getFriendByIndex(index:Int, flags:EFriendFlag)					: String;
 	function getFriendPersonaName(id:String)								: String;
 	
 	/******************************/
 	/* Authentication & Ownership */
 	/******************************/
-	function getAuthSessionTicket(ticket:flash.utils.ByteArray)				: UInt;
+	function getAuthSessionTicket(ticket:flash.utils.ByteArray)				: AuthHandle;
 	function getAuthSessionTicketResult()									: UInt;
 	function beginAuthSession(ticket:flash.utils.ByteArray, steamID:String)	: Int;
 	function endAuthSession(steamID:String)									: Bool;
 	function cancelAuthTicket(ticketHandle:UInt)							: Bool;
-	function userHasLicenseForApp(steamID:String, appID:UInt)				: UInt;
+	function userHasLicenseForApp(steamID:String, appID:UInt)				: EUserHasLicenseResult;
 	                                                                          
 	/***********/                                                             
 	/* Overlay */                                                             

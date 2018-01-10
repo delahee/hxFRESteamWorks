@@ -1,6 +1,6 @@
 package com.amanitadesign.steam;
 
-@:fakeEnum(Int) extern enum UserConstants {
+@:fakeEnum(UInt) extern enum UserConstants {
 	BEGINAUTH_OK						;
 	BEGINAUTH_InvalidTicket				;
 	BEGINAUTH_DuplicateRequest			;
