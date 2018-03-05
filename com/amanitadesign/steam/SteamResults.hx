@@ -2,7 +2,7 @@
 package com.amanitadesign.steam;
 
 @:enum
-abstract SteamResults(Int) {
+abstract SteamResults(Int) to Int {
 	var OK 							= 1;
 	var Fail 						= 2;
 	var NoConnection 				= 3;	
