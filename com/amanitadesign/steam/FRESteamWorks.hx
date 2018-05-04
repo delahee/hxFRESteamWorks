@@ -54,7 +54,7 @@ extern class FRESteamWorks extends flash.events.EventDispatcher {
 	function requestStats()						: Bool;
 	function setAchievement(name:String)		: Bool; 
 	function clearAchievement(name:String)		: Bool; 
-	function isAchievement(name:String)			: Bool;
+	function isAchievement(name:String)			: Bool; //returns whether achievement is set, does not check if it exists
 	function indicateAchievementProgress(name:String, currentProgress:Int, maxProgress:Int) : Bool;
 	function getStatInt(name:String)			: Int;
 	
